@@ -1,11 +1,10 @@
 # chemlambda-awk
-A re-write of [chemlabda-gui](https://github.com/chorasimilarity/chemlambda-gui/blob/gh-pages/dynamic/README.md)
 
-Please check there for more info on the original work of the author
+A re-organization (and expected small modifications for best-practice purposes) of [chemlabda-gui](https://github.com/chorasimilarity/chemlambda-gui/blob/gh-pages/dynamic/README.md)
 
-The purpose of the re-write is to organize the source code and separate it from the resultant html files
+Please check the original repository for more details on the work of the author.
 
-It is licensed similarly to `chemlambda-gui`
+It is licensed similarly to the original repository, `chemlambda-gui`
 
 
 ## Usage
