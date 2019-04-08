@@ -1,0 +1,63 @@
+// published at https://gist.github.com/shadiakiki1986/e215afed6308dad4036b33cef4c513ce
+
+digraph G {
+  rankdir = TB;
+
+  // defaults for L
+  node [shape=record, color=red, style=filled]; 
+  L1 [label="<lo> u |{<mi> x|L1} | <ro> λu.x"];
+  L2 [label="<lo> u |{<mi> u|L2} | <ro> λu.u"];
+  L3 [label="<lo> h |{<mi> h (g f)|L3} | <ro> λh.h (g f)"];
+  L4 [label="<lo> g |{<mi> λh.h (g f)|L4} | <ro> (λg.λh.h (g f))"];
+  L5 [label="<lo> x |{<mi> n (λg.λh.h (g f)) (λu.x) (λu.u)|L5} | <ro> λx.n (λg.λh.h (g f)) (λu.x) (λu.u)"];
+  L6 [label="<lo> f |{<mi> λx.n (λg.λh.h (g f)) (λu.x) (λu.u)|L6} | <ro> λf.λx.n (λg.λh.h (g f)) (λu.x) (λu.u)"];
+  L7 [label="<lo> n |{<mi> λf.λx.n (λg.λh.h (g f)) (λu.x) (λu.u)|L7} | <ro> λn.λf.λx.n (λg.λh.h (g f)) (λu.x) (λu.u)"];
+
+  // defaults for A
+  node [shape=record, color=green, style=filled]; 
+  A1 [label="<li> f |{A1|<mo> g} | <ri> (g f)"];
+  A2 [label="<li> (g f) |{A2|<mo> h} | <ri> h (g f)"];
+  A3 [label="<li> n |{A3|<mo> (λg.λh.h (g f))} | <ri> n (λg.λh.h (g f))"];
+  A4 [label="<li> n (λg.λh.h (g f)) |{A4|<mo> (λu.x)} | <ri> n (λg.λh.h (g f)) (λu.x)"];
+  A5 [label="<li> n (λg.λh.h (g f)) (λu.x) |{A5|<mo> (λu.u)} | <ri> n (λg.λh.h (g f)) (λu.x) (λu.u)"];
+
+  // other
+  T [ shape=point ]
+  output [ style=filled, color=pink ]
+  input [ style=filled, color=pink ]
+
+
+  // aesthetics
+//  {rank=same; L1 A5}
+//  {rank=same; L2 L5}
+
+
+  // build edges
+  L1:lo -> T [ label=2 ]
+  L2:lo -> L2:mi [ label=6 ]
+  A2:ri -> L3:mi
+  L3:ro -> L4:mi [ label=7 ]
+  L4:ro -> A3:mo
+  A3:ri -> A4:li
+  L1:ro -> A4:mo
+  L2:ro -> A5:mo
+  A4:ri -> A5:li
+  A5:ri -> L5:mi
+  L5:ro -> L6:mi
+  L6:ro -> L7:mi
+
+  A1:ri -> A2:li
+  A2:mo -> L3:lo
+
+  L5:lo -> L1:mi
+  L6:lo -> A1:li
+  L4:lo -> A1:mo
+
+  L7:ro -> output
+  input -> L7:lo
+}
+
+
+// https://en.wikipedia.org/wiki/Lambda_calculus
+// PRED := λn.λf.λx.n (λg.λh.h (g f)) (λu.x) (λu.u)
+
